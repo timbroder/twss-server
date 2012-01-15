@@ -1,0 +1,65 @@
+<!doctype html>
+	<head>
+		<title>That's What She Said</title>
+		<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+		<style type="text/css">
+			body { 
+				text-align: center;
+				height: 100%;
+			}
+			.ui { 
+				position: absolute;
+				width: 100%;
+				top: 15%;
+				margin-top: -1em;
+			}
+			#resp {
+				position: relative;
+				font-size: 100px;
+				top: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="ui">
+			<h1>That's what she said?</h1>
+			<input type="text" size="30" name="didshe" id="didshe" class="xlarge"><br><br>
+			<button class="btn primary large" type="submit">Did She?</button>
+			<h2 id="resp"></h2>
+		</div>
+		
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script>
+			var $resp = $('#resp');
+			
+			function fade(text) {
+				$resp.fadeOut('fast', function() {
+					$(this).html(text).fadeIn('fast');
+				});
+			}
+			
+			$('button').click(function() {
+				$.ajax({
+					type: "GET",
+					url: 'http://timbroder.com:10000/',
+					dataType: 'jsonp',
+					data: { 'what': $('#didshe').val() }
+				})
+				.success(function(data) {
+					if (data.response) {
+						fade('Yeah!');
+					} else {
+						fade('Nope');
+					}
+				});
+			});
+			
+			$('#didshe').keypress(function(e) {
+				if(e.which === 13) {
+					$(this).blur();
+					$('button').focus().click();
+				}
+			});
+		</script>
+	</body>
+</html>
