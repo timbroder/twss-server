@@ -13,10 +13,16 @@
 				top: 15%;
 				margin-top: -1em;
 			}
-			#resp {
+			.block {
 				position: relative;
-				font-size: 100px;
 				top: 50px;
+			}
+			.footer {
+				position: relative;
+				top: 100px;
+			}
+			h2 {
+				font-size: 100px;
 			}
 		</style>
 	</head>
@@ -25,9 +31,12 @@
 			<h1>That's what she said?</h1>
 			<input type="text" size="30" name="didshe" id="didshe" class="xlarge"><br><br>
 			<button class="btn primary large" type="submit">Did She?</button>
-			<h2 id="resp"></h2>
+			<h2 id="resp" class="block"></h2>
+			<p class="footer">Powered by <a href="https://github.com/DanielRapp/twss.js">twss.js</a></p>
 		</div>
-		
+		<div class="block">
+			
+		</div>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script>
 			var $resp = $('#resp');
